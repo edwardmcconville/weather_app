@@ -2,6 +2,7 @@
    <head>
       <meta content = "text/html; charset = ISO-8859-1" http-equiv = "content-type">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="style.css" type="text/css" />
       
       <script type = "application/javascript">
 
@@ -16,7 +17,7 @@
             var country = document.getElementById("country").value;
 
             // add value form input to request string along with API key 
-            var data_file = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID=87eda7ba3022904f0003ba170976905e";
+            var data_file = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID=87eda7ba3022904f0003ba170976905e&units=metric";
 
             var http_request = new XMLHttpRequest();
             try{
@@ -54,11 +55,12 @@
                   // be accessed as jsonObj.name and jsonObj.country.
                   document.getElementById("City").innerHTML = jsonObj.name;
                   document.getElementById("Weather").innerHTML = jsonObj.weather[0].main;
-                  document.getElementById("Temp").innerHTML = jsonObj.main.temp;
-                  document.getElementById("Icon").innerHTML = iconUrl;
-                  document.getElementById("heading").innerHTML = "In "+jsonObj.name+" you can expect "+jsonObj.weather[0].main+" today!"
+                  document.getElementById("Temp").innerHTML = jsonObj.main.temp+"&#8451";
+                  document.getElementById("Thanks").innerHTML = "Thank you for using our service. Enjoy the weather in "+jsonObj.name+"!";
+                  // document.getElementById("Icon").innerHTML = iconUrl;
+                  document.getElementById("heading").innerHTML = "Current weather and forecast in "+jsonObj.name;
 
-                  // document.getElementById("heading").innerHTML = "<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather Icon' id='top-icon'/>";
+                  document.getElementById("Icon").innerHTML = "<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather Icon' id='top-icon'/>";
                }
             }
          
@@ -67,134 +69,10 @@
          }
       
       </script>
-        <style type="text/css">
+      
 
-        @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-
-        html { 
-           background: #000 url(img/weather-app-bg.jpg) no-repeat center center fixed; 
-           -webkit-background-size: cover;
-           -moz-background-size: cover;
-           -o-background-size: cover;
-           background-size: cover;
-         }
-
-         body { 
-           font-family: 'Open Sans', sans-serif;
-           color: #000;
-         }
-
-         /* STRUCTURE */
-
-         .wrapper {
-            padding: 5px;
-            width: 960px;
-            margin: 20px auto;
-            background: #fff;
-         }
-         header {
-            height: 100px;
-            padding: 0 15px;
-         }
-         .content {
-            width: 290px;
-            float: left;
-            padding: 5px 15px;
-         }
-
-         .middle {
-            width: 294px; /* Account for margins + border values */
-            float: left;
-            padding: 5px 15px;
-            margin: 0px 5px 5px 5px;
-         }
-
-         .sidebar {
-            width: 270px;
-            padding: 5px 15px;
-            float: left;
-         }
-         footer {
-            clear: both;
-            padding: 0 15px;
-         }
-
-         button{background: #fff; border: 0px; font-size: 200%; font-weight: bold; cursor: pointer;}
-
-
-         /************************************************************************************
-         MEDIA QUERIES
-         *************************************************************************************/
-         /* for 980px or less */
-         @media screen and (max-width: 980px) {
-            
-            .wrapper {
-               width: 94%;
-            }
-            .content {
-               width: 41%;
-               padding: 1% 4%;
-            }
-            .middle {
-               width: 41%;
-               padding: 1% 4%;
-               margin: 0px 0px 5px 5px;
-               float: right;
-            }
-            
-            .sidebar {
-               clear: both;
-               padding: 1% 4%;
-               width: auto;
-               float: none;
-            }
-
-            header, footer {
-               padding: 1% 4%;
-            }
-         }
-
-         /* for 700px or less */
-         @media screen and (max-width: 600px) {
-
-            .content {
-               width: auto;
-               float: none;
-            }
-            
-            .middle {
-               width: auto;
-               float: none;
-               margin-left: 0px;
-            }
-            
-            .sidebar {
-               width: auto;
-               float: none;
-            }
-
-         }
-
-         /* for 480px or less */
-         @media screen and (max-width: 480px) {
-
-            header {
-               height: auto;
-            }
-            h1 {
-               font-size: 2em;
-            }
-
-         }
-
-         header, #content, #middle, #sidebar {
-            margin-bottom: 5px;
-         }
-
-         .wrapper, header, .content, .middle, .sidebar, footer {
-            border: solid 1px #ccc;
-         }
-        </style>
+        
+        
       <title>Edward McConville - Demo Weather App</title>
    </head>
    
@@ -462,22 +340,37 @@
          </section>
          
          <section class="middle">
-            <p>Enter your city, town or postcode:</p>
+            <p>Enter your city, town or postcode</p>
             <input type="text" id="city">
          </section>
 
-         <aside class="sidebar">
-            <button type = "button" onclick = "loadJSON()">What's The Weather Like!?</button>
-         </aside>
+         <section class="sidebar">
+            <p>Generate your report</p>
+            <button type = "button" onclick = "loadJSON()">Get Report</button>
+         </section>
+
+         <section class="content">
+            <div id = "City"></div>
+            <div id = "Weather"></div>
+            <div id = "Icon"></div>
+         </section>
+         
+         <section class="middle">
+            <h1 id="Temp"></h1>
+         </section>
+
+         <section class="sidebar">
+            <h1 id="Thanks"></h1>
+         </section>
          
          <footer>
-            <table class = "src">
+            <!-- <table class = "src">
                <tr><th>City</th><th>Weather</th><th>Temperature</th><th>Icon</th></tr>
                <tr><td><div id = "City"></div></td>
                <td><div id = "Weather"></div></td>
                <td><div id = "Temp"></div></td>
                <td><div id = "Icon"></div></td></tr>
-            </table>
+            </table> -->
          </footer>
 
       </div>
