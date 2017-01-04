@@ -25,6 +25,9 @@ header {
    height: 100px;
    padding: 0 15px;
 }
+.second-header{
+   padding: 0 15px;
+}
 .content {
    width: 290px;
    float: left;
@@ -87,7 +90,7 @@ MEDIA QUERIES
       float: none;
    }
 
-   header, footer {
+   header, footer, .second-header {
       padding: 1% 4%;
    }
 }

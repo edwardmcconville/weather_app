@@ -53,7 +53,7 @@
 
                   // jsonObj variable now contains the data structure and can
                   // be accessed as jsonObj.name and jsonObj.country.
-                  document.getElementById("City").innerHTML = jsonObj.name;
+                  // document.getElementById("City").innerHTML = jsonObj.name;
                   document.getElementById("Weather").innerHTML = jsonObj.weather[0].main;
                   document.getElementById("Temp").innerHTML = jsonObj.main.temp+"&#8451";
                   document.getElementById("Thanks").innerHTML = "Thank you for using our service. Enjoy the weather in "+jsonObj.name+"!";
@@ -61,6 +61,13 @@
                   document.getElementById("heading").innerHTML = "Current weather and forecast in "+jsonObj.name;
 
                   document.getElementById("Icon").innerHTML = "<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather Icon' id='top-icon'/>";
+
+                  var secondHeader = document.getElementsByClassName("second-header--heading");
+                  secondHeader[0].innerHTML = "The current forcast for "+jsonObj.name+" is:";
+
+                  document.getElementById("Description").innerHTML = jsonObj.weather[0].description;
+                  document.getElementById("min").innerHTML = jsonObj.main.temp_min+"&#8451";
+                  document.getElementById("max").innerHTML = jsonObj.main.temp_max+"&#8451";
                }
             }
          
@@ -349,17 +356,32 @@
             <button type = "button" onclick = "loadJSON()">Get Report</button>
          </section>
 
+         <section class="second-header">
+            <h1 class="second-header--heading"></h1>
+         </section>
+
          <section class="content">
-            <div id = "City"></div>
+            <h3>Weather</h3>
             <div id = "Weather"></div>
             <div id = "Icon"></div>
+            <div id = "Description"></div>
          </section>
          
          <section class="middle">
+            <h3>Temperature</h3>
             <h1 id="Temp"></h1>
          </section>
 
          <section class="sidebar">
+            <h3>With highs of:</h3>
+            <h4 id="min"></h4>
+            <h3>and lows of:</h3>
+            <h4 id="max"></h4>
+             
+            
+         </section>
+
+         <section class="second-header" style="clear: both;">
             <h1 id="Thanks"></h1>
          </section>
          
@@ -375,8 +397,6 @@
 
       </div>
 
-      
-      
    </body>
       
 </html>
