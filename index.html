@@ -1,13 +1,19 @@
 <html>
    <head>
       <meta content = "text/html; charset = ISO-8859-1" http-equiv = "content-type">
-		
+      
       <script type = "application/javascript">
 
-         // original starting point take from a JSON tutorial on tutorialspoint.com
-         
+      //  original function loadJSON borrowed from w3 Schools
+
          function loadJSON(){
-            var data_file = "http://www.tutorialspoint.com/json/data.json";
+
+            // added var city to grab value from input
+            var city = document.getElementById("city").value;
+
+            // add value form input to request string along with API key 
+            var data_file = "http://api.openweathermap.org/data/2.5/weather?q="+city+",uk&APPID=87eda7ba3022904f0003ba170976905e";
+
             var http_request = new XMLHttpRequest();
             try{
                // Opera 8.0+, Firefox, Chrome, Safari
@@ -16,9 +22,9 @@
                // Internet Explorer Browsers
                try{
                   http_request = new ActiveXObject("Msxml2.XMLHTTP");
-					
+               
                }catch (e) {
-				
+            
                   try{
                      http_request = new ActiveXObject("Microsoft.XMLHTTP");
                   }catch (e){
@@ -26,45 +32,58 @@
                      alert("Your browser broke!");
                      return false;
                   }
-					
+               
                }
             }
-			
+         
             http_request.onreadystatechange = function(){
-			
+         
                if (http_request.readyState == 4  ){
                   // Javascript function JSON.parse to parse JSON data
                   var jsonObj = JSON.parse(http_request.responseText);
 
+                  var iconCode = data.weather[0].icon;
+                  and then use that to construct a url which points to the icon,
+                  var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+
                   // jsonObj variable now contains the data structure and can
                   // be accessed as jsonObj.name and jsonObj.country.
-                  document.getElementById("Name").innerHTML = jsonObj.name;
-                  document.getElementById("Country").innerHTML = jsonObj.country;
+                  document.getElementById("City").innerHTML = jsonObj.name;
+                  document.getElementById("Weather").innerHTML = jsonObj.weather[0].main;
+                  document.getElementById("Temp").innerHTML = jsonObj.main.temp;
+                  document.getElementById("Icon").innerHTML = jsonObj.main.temp;
                }
             }
-			
+         
             http_request.open("GET", data_file, true);
             http_request.send();
          }
-		
+      
       </script>
-	
+        <style type="text/css">body, table{font-size: 150%!important;}</style>
       <title>tutorialspoint.com JSON</title>
    </head>
-	
+   
    <body>
-      <h1>Cricketer Details</h1>
-		
-      <table class = "src">
-         <tr><th>Name</th><th>Country</th></tr>
-         <tr><td><div id = "Name">Sachin</div></td>
-         <td><div id = "Country">India</div></td></tr>
-      </table>
+      <h1>Weather App</h1>
 
       <div class = "central">
-         <button type = "button" onclick = "loadJSON()">Update Details </button>
+         
+         <p>Enter your city, town or postcode:</p>
+         <input type="text" id="city">
+         <button type = "button" onclick = "loadJSON()">What's The Weather Like!?</button>
       </div>
-		
+      
+      <table class = "src">
+         <tr><th>City</th><th>Weather</th><th>Temperature</th><th>Icon</th></tr>
+         <tr><td><div id = "City"></div></td>
+         <td><div id = "Weather"></div></td>
+         <td><div id = "Temp"></div></td></tr>
+         <td><div id = "Icon"></div></td></tr>
+      </table>
+
+      
+      
    </body>
-		
+      
 </html>
