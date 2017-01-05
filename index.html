@@ -23,10 +23,10 @@
             // add value form input to request string along with API key 
             var data_file = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID=87eda7ba3022904f0003ba170976905e&units=metric";
 
-            var http_request = new XMLHttpRequest();
+            var http_request;
             try{
                // Opera 8.0+, Firefox, Chrome, Safari
-               http_request = new XMLHttpRequest();
+               http_request = new XMLHttpRequest()
             }catch (e){
                // Internet Explorer Browsers
                try{
@@ -44,6 +44,8 @@
                
                }
             }
+
+            
          
             http_request.onreadystatechange = function(){
          
