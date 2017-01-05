@@ -6,7 +6,11 @@
       
       <script type = "application/javascript">
 
-      //  original function loadJSON borrowed from w3 Schools
+         // document.getElementById('div1').style.display = 'none';
+         // document.getElementById('div2').style.display = 'none';
+         // document.getElementById('div3').style.display = 'none';
+
+         //  original function loadJSON borrowed from w3 Schools
 
          function loadJSON(){
 
@@ -85,13 +89,13 @@
    
    <body>     
 
-      <div class="wrapper">
+      <div class="weatherapp">
 
          <header>
             <h1 id="heading">What's the weather like where you are?</h1>
          </header>
             
-         <section class="content">
+         <section class="weatherapp__box weatherapp__box--left">
             <p>Select Your Country</p>
             <select id="country">
                <option value="GB">United Kingdom</option>
@@ -346,39 +350,37 @@
             </select>
          </section>
          
-         <section class="middle">
+         <section class="weatherapp__box middle weatherapp__box--middle">
             <p>Enter your city, town or postcode</p>
             <input type="text" id="city">
          </section>
 
-         <section class="sidebar">
+         <section class="weatherapp__box weatherapp__box--right">
             <p>Generate your report</p>
             <button type = "button" onclick = "loadJSON()">Get Report</button>
          </section>
 
-         <section class="second-header">
+         <section class="weatherapp__box weatherapp__box second-header">
             <h1 class="second-header--heading"></h1>
          </section>
 
-         <section class="content">
+         <section class="weatherapp__box  weatherapp__box--left">
             <h3>Weather</h3>
             <div id = "Weather"></div>
             <div id = "Icon"></div>
             <div id = "Description"></div>
          </section>
          
-         <section class="middle">
+         <section class="weatherapp__box weatherapp__box middle">
             <h3>Temperature</h3>
             <h1 id="Temp"></h1>
          </section>
 
-         <section class="sidebar">
+         <section class="weatherapp__box weatherapp__box--right">
             <h3>With highs of:</h3>
             <h4 id="min"></h4>
             <h3>and lows of:</h3>
             <h4 id="max"></h4>
-             
-            
          </section>
 
          <section class="second-header" style="clear: both;">

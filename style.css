@@ -11,7 +11,7 @@ body {
 
 /* STRUCTURE */
 
-.wrapper {
+.weatherapp {
    padding: 5px;
    width: 960px;
    margin: 20px auto;
@@ -28,20 +28,20 @@ header {
 .second-header{
    padding: 0 15px;
 }
-.content {
+.weatherapp__box--left {
    width: 290px;
    float: left;
    padding: 5px 15px;
 }
 
-.middle {
+.weatherapp__box--middle {
    width: 294px; /* Account for margins + border values */
    float: left;
    padding: 5px 15px;
    margin: 0px 5px 5px 5px;
 }
 
-.sidebar {
+.weatherapp__box--right {
    width: 270px;
    padding: 5px 15px;
    float: left;
@@ -69,21 +69,21 @@ MEDIA QUERIES
 /* for 980px or less */
 @media screen and (max-width: 980px) {
    
-   .wrapper {
+   .weatherapp {
       width: 94%;
    }
-   .content {
+   .weatherapp__box--left {
       width: 41%;
       padding: 1% 4%;
    }
-   .middle {
+   .weatherapp__box--middle{
       width: 41%;
       padding: 1% 4%;
       margin: 0px 0px 5px 5px;
       float: right;
    }
    
-   .sidebar {
+   .weatherapp__box--right {
       clear: both;
       padding: 1% 4%;
       width: auto;
@@ -98,18 +98,18 @@ MEDIA QUERIES
 /* for 700px or less */
 @media screen and (max-width: 600px) {
 
-   .content {
+   .weatherapp__box--left {
       width: auto;
       float: none;
    }
    
-   .middle {
+   .weatherapp__box--middle {
       width: auto;
       float: none;
       margin-left: 0px;
    }
    
-   .sidebar {
+   .weatherapp__box--right {
       width: auto;
       float: none;
    }
@@ -128,6 +128,6 @@ MEDIA QUERIES
 
 }
 
-header, #content, #middle, #sidebar {
+header, .weatherapp__box {
    margin-bottom: 5px;
 }
