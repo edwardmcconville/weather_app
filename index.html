@@ -6,13 +6,19 @@
       
       <script type = "application/javascript">
 
-         // document.getElementById('div1').style.display = 'none';
-         // document.getElementById('div2').style.display = 'none';
-         // document.getElementById('div3').style.display = 'none';
-
-         //  original function loadJSON borrowed from w3 Schools
+         // var hiddenDiv = document.getElementsByClassName("weatherapp__box--hidden");
+         // for(i=0; i<hiddenDiv.length; i++) {
+         //    hiddenDiv[i].style.display = 'block';
+         //  }
 
          function loadJSON(){
+
+
+            var hiddenDiv = document.getElementsByClassName('weatherapp__box--hidden');
+            // function to show hidden divs when function runs
+               for(i=0; i<hiddenDiv.length; i++) {
+               hiddenDiv[i].style.display='block';
+            }
 
             // added var city to grab city / place / postcode value from input
             var city = document.getElementById("city").value;
@@ -23,6 +29,7 @@
             // add value form input to request string along with API key 
             var data_file = "http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&APPID=87eda7ba3022904f0003ba170976905e&units=metric";
 
+            //  original function borrowed from w3 Schools
             var http_request;
             try{
                // Opera 8.0+, Firefox, Chrome, Safari
@@ -45,34 +52,42 @@
                }
             }
 
-            
-         
             http_request.onreadystatechange = function(){
          
                if (http_request.readyState == 4  ){
                   // Javascript function JSON.parse to parse JSON data
                   var jsonObj = JSON.parse(http_request.responseText);
 
-                  var iconCode = jsonObj.weather[0].icon;
-                  
-                  var iconUrl = "<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather Icon' />";
-
-                  // jsonObj variable now contains the data structure and can
-                  // be accessed as jsonObj.name and jsonObj.country.
-                  // document.getElementById("City").innerHTML = jsonObj.name;
-                  document.getElementById("Weather").innerHTML = jsonObj.weather[0].main;
-                  document.getElementById("Temp").innerHTML = jsonObj.main.temp+"&#8451";
+                  // page header
                   document.getElementById("Thanks").innerHTML = "Thank you for using our service. Enjoy the weather in "+jsonObj.name+"!";
+
+                  // second heading
+                  var secondHeader = document.getElementsByClassName("second-header--heading");
+                  secondHeader[0].innerHTML = "The current forcast for "+jsonObj.name+" is:";
+                  
+                  
                   // document.getElementById("Icon").innerHTML = iconUrl;
-                  document.getElementById("heading").innerHTML = "Current weather and forecast in "+jsonObj.name;
+                  document.getElementById("heading").innerHTML = "Current weather forecast in "+jsonObj.name;
+
+                  // main weather
+                  document.getElementById("Weather").innerHTML = jsonObj.weather[0].main;
+
+                  // icon functionality
+                  var iconCode = jsonObj.weather[0].icon;
+                  var iconUrl = "<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather Icon' />";
 
                   document.getElementById("Icon").innerHTML = "<img src='http://openweathermap.org/img/w/" + iconCode + ".png' alt='Weather Icon' id='top-icon'/>";
 
-                  var secondHeader = document.getElementsByClassName("second-header--heading");
-                  secondHeader[0].innerHTML = "The current forcast for "+jsonObj.name+" is:";
-
+                  // description 
                   document.getElementById("Description").innerHTML = jsonObj.weather[0].description;
+
+                  // temperature
+                  document.getElementById("Temp").innerHTML = jsonObj.main.temp+"&#8451";
+
+                  // low
                   document.getElementById("min").innerHTML = jsonObj.main.temp_min+"&#8451";
+
+                  // high
                   document.getElementById("max").innerHTML = jsonObj.main.temp_max+"&#8451";
                }
             }
@@ -82,10 +97,6 @@
          }
       
       </script>
-      
-
-        
-        
       <title>Edward McConville - Demo Weather App</title>
    </head>
    
@@ -366,19 +377,19 @@
             <h1 class="second-header--heading"></h1>
          </section>
 
-         <section class="weatherapp__box  weatherapp__box--left">
+         <section class="weatherapp__box  weatherapp__box--left weatherapp__box--hidden">
             <h3>Weather</h3>
             <div id = "Weather"></div>
             <div id = "Icon"></div>
             <div id = "Description"></div>
          </section>
          
-         <section class="weatherapp__box weatherapp__box middle">
+         <section class="weatherapp__box weatherapp__box--middle weatherapp__box--hidden">
             <h3>Temperature</h3>
             <h1 id="Temp"></h1>
          </section>
 
-         <section class="weatherapp__box weatherapp__box--right">
+         <section class="weatherapp__box weatherapp__box--right weatherapp__box--hidden">
             <h3>With highs of:</h3>
             <h4 id="min"></h4>
             <h3>and lows of:</h3>
@@ -390,14 +401,7 @@
          </section>
          
          <footer>
-            <!-- <table class = "src">
-               <tr><th>City</th><th>Weather</th><th>Temperature</th><th>Icon</th></tr>
-               <tr><td><div id = "City"></div></td>
-               <td><div id = "Weather"></div></td>
-               <td><div id = "Temp"></div></td>
-               <td><div id = "Icon"></div></td></tr>
-            </table> -->
-         </footer>
+            <p>Edward McConville - 2016</p>
 
       </div>
 

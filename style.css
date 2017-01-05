@@ -60,8 +60,16 @@ button{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    }
+}
 
+.weatherapp__box--hidden{
+   display: none;
+   /*Will use JS to reveal*/
+}
+
+header, .weatherapp__box {
+   margin-bottom: 5px;
+}
 
 /************************************************************************************
 MEDIA QUERIES
@@ -126,8 +134,4 @@ MEDIA QUERIES
       font-size: 2em;
    }
 
-}
-
-header, .weatherapp__box {
-   margin-bottom: 5px;
 }
