@@ -1,2 +1,2 @@
 # weather_app
-Weather app for aptitude test
+basic weather app JSON 
